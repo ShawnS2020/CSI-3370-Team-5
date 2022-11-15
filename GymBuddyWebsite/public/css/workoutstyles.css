@@ -1,0 +1,17 @@
+main {
+  background-color: LIGHTGRAY;
+  padding: 10px;
+}
+
+.div-workout {
+  width: 320px;
+  height: 225px;
+  margin: 20px;
+  background-color: LIGHTBLUE;
+  border-radius: 40px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: BLACK;
+  display: inline-block;
+  vertical-align: bottom;
+}
