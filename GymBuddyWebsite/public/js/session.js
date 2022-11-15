@@ -1,5 +1,6 @@
 import {workout1, workout2, workout3} from "./workoutslist.js";
 import {Session} from "./sessionclass.js";
+import {AppendElement} from "./appendelementclass.js"
 
 const session = new Session("Strength", "Triceps", 19, 50);
 
@@ -10,7 +11,7 @@ if (window.location.pathname == "/session") {
   });
 
   session.setWorkoutsCount(session.getMinTime(), session.getMaxTime());
-  session.getSessionWorkout1().appendName(document.getElementById("h2-workouts"));
+  AppendElement.appendElement(session.getSessionWorkout1().getName(), document.getElementById("h2-workouts"));
 
 
 }
