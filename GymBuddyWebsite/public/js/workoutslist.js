@@ -1,4 +1,5 @@
 import {Workout} from "./workoutclass.js";
+import {AppendElement} from "./appendelementclass.js";
 
 // Instantiating Workout objects
 const workout1 = new Workout("Bicep curls", "Curl your biceps", "Biceps", 2);
@@ -16,19 +17,19 @@ if (window.location.pathname == "/workoutslist") {
 
     // Appending name, description, and muscles to preexisting html elements in workoutlist.html
     // Workout 1
-    workout1.appendName(document.getElementById("h1-workout1Name"));
-    workout1.appendDescription(document.getElementById("p-workout1Description"));
-    workout1.appendMuscles(document.getElementById("p-workout1Muscles"));
+    AppendElement.appendElement(workout1.getName(), document.getElementById("h1-workout1Name"));
+    AppendElement.appendElement(workout1.getDescription(), document.getElementById("p-workout1Description"));
+    AppendElement.appendElement(workout1.getMuscles(), document.getElementById("p-workout1Muscles"));
 
     // Workout 2
-    workout2.appendName(document.getElementById("h1-workout2Name"));
-    workout2.appendDescription(document.getElementById("p-workout2Description"));
-    workout2.appendMuscles(document.getElementById("p-workout2Muscles"));
+    AppendElement.appendElement(workout2.getName(), document.getElementById("h1-workout2Name"));
+    AppendElement.appendElement(workout2.getDescription(), document.getElementById("p-workout2Description"));
+    AppendElement.appendElement(workout2.getMuscles(), document.getElementById("p-workout2Muscles"));
 
     // Workout 3
-    workout3.appendName(document.getElementById("h1-workout3Name"));
-    workout3.appendDescription(document.getElementById("p-workout3Description"));
-    workout3.appendMuscles(document.getElementById("p-workout3Muscles"));
+    AppendElement.appendElement(workout3.getName(), document.getElementById("h1-workout3Name"));
+    AppendElement.appendElement(workout3.getDescription(), document.getElementById("p-workout3Description"));
+    AppendElement.appendElement(workout3.getMuscles(), document.getElementById("p-workout3Muscles"));
 }
 
 export {arrayWorkoutsList, workout1, workout2, workout3};
