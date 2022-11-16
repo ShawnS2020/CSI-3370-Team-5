@@ -1,4 +1,4 @@
-import {arrayWorkoutsList, workout1, workout2, workout3} from "./workoutslist.js";
+import {arrayWorkoutsList, arrayTricepsWorkouts} from "./workoutslist.js";
 
 // This link has good notes on rep/set/workout counts for each goal
 // https://vitalrecord.tamhsc.edu/how-to-exercise-for-muscular-strength-endurance-and-size/
@@ -10,10 +10,8 @@ class Session {
   #minTime;
   #maxTime;
   #workoutsCount;
-  #setCount;
-  #repCount
-  #sessionWorkout1;
   #sessionWorkouts = [];
+  #repCount;
 
   constructor(goal, muscles, minTime, maxTime) {
     this.#goal = goal;
@@ -21,97 +19,57 @@ class Session {
     this.#minTime = minTime;
     this.#maxTime = maxTime;
 
-    this.#sessionWorkout1 = this.generateWorkouts();
+    // this.#sessionWorkout1 = this.setWorkouts();
   }
 
-  // Strength: 4-6 sets
-  // Hypertrophy: 3-5 sets
-  // Endurance: 2-3 sets
-  setCount() {
-    switch (this.#goal.toLowerCase()) {
+  getSessionWorkouts() {
+    return this.#sessionWorkouts;
+  }
+
+  setSessionWorkouts(muscles) {
+    const tempArray = arrayTricepsWorkouts;
+
+
+    for (let i = 0; i < this.#workoutsCount; i ++) {
+      switch (muscles.toLowerCase()) {
+        case "biceps":
+        //
+        break;
+
+        case "triceps":
+        const randomTricepsWorkout = tempArray[Math.floor(Math.random() * arrayTricepsWorkouts.length)];
+        this.#sessionWorkouts.push(randomTricepsWorkout);
+        tempArray.splice(tempArray.indexOf(randomTricepsWorkout), 1);
+        break;
+
+        case "chest":
+        //
+        break;
+      }
+    }
+  }
+
+  getRepCount() {
+    return this.#repCount;
+  }
+
+  // Strength: 1 to 5 reps
+  // Hypertrophy: 8 to 12 reps
+  // Endurance: 12 to 20+ reps
+  setRepCount(goal) {
+    switch (goal) {
       case "Strength":
-      // Code here
+      this.#repCount = "1 to 5 reps each";
       break;
+
       case "Hypertrophy":
-      // Code here
+      this.#repCount = "8 to 12 reps each";
       break;
+
       case "Endurance":
-      // Code here
+      this.#repCount = "12 to 20+ reps each";
       break;
     }
-  }
-
-  // Strength:
-  // Hypertrophy:
-  // Endurance:
-  repCount() {
-    switch (this.#goal.toLowerCase()) {
-      case "Strength":
-      // Code here
-      break;
-      case "Hypertrophy":
-      // Code here
-      break;
-      case "Endurance":
-      // Code here
-      break;
-    }
-  }
-
-  generateWorkouts() {
-    // Instantiate regular expression objects with a string pattern corresponding to each muscle
-    // These will be used to create arrays for workouts with similar muscles
-    const bicepsRegExp = new RegExp(/biceps/);
-    const tricepsRegExp = new RegExp(/triceps/);
-    const chestRegExp = new RegExp(/chest/);
-
-    // Switch statement to check which muscles were selected
-    // Each case creates an array of workout objects with corresponding muscle data
-    // Then returns a random workout object from the array
-    switch (this.#muscles.toLowerCase()) {
-
-      case "biceps":
-      const arrayBicepsWorkouts = new Array();
-      for (let i = 0; i < arrayWorkoutsList.length; i ++ ) {
-        if (bicepsRegExp.test(arrayWorkoutsList[i].getMuscles().toLowerCase())) {
-          arrayBicepsWorkouts.push(arrayWorkoutsList[i]);
-        }
-      }
-      const randomBicepsWorkout = arrayBicepsWorkouts[Math.floor(Math.random() * arrayBicepsWorkouts.length)];
-      return randomBicepsWorkout;
-      break;
-
-      case "triceps":
-      const arrayTricepsWorkouts = new Array();
-      for (let i = 0; i < arrayWorkoutsList.length; i ++ ) {
-        if (tricepsRegExp.test(arrayWorkoutsList[i].getMuscles().toLowerCase())) {
-          arrayTricepsWorkouts.push(arrayWorkoutsList[i]);
-        }
-      }
-      const randomTricepsWorkout = arrayTricepsWorkouts[Math.floor(Math.random() * arrayTricepsWorkouts.length)];
-      return randomTricepsWorkout;
-      break;
-
-      case "chest":
-      const arrayChestWorkouts = new Array();
-      for (let i = 0; i < arrayWorkoutsList.length; i ++ ) {
-        if (chestRegExp.test(arrayWorkoutsList[i].getMuscles().toLowerCase())) {
-          arrayChestWorkouts.push(arrayWorkoutsList[i]);
-        }
-      }
-      const randomChestWorkout = arrayChestWorkouts[Math.floor(Math.random() * arrayChestWorkouts.length)];
-      return randomChestWorkout;
-      break;
-    }
-  }
-
-  // Will replace with getSessionWorkouts
-  getSessionWorkout1() {
-    return this.#sessionWorkout1;
-  }
-
-  setSessionWorkouts() {
-    // For workoutsCount, generate a workout
   }
 
   getGoal() {
@@ -136,12 +94,13 @@ class Session {
 
   // Using 10 mins as everage workout time
   setWorkoutsCount(minTime, maxTime) {
-    // Round minTime and maxTime to the nearest 10 mins
+    // Round minTime and maxTime divided by 10 mins
     const minTimeRounded = Math.floor(minTime / 10);
     const maxTimeRounded = Math.floor(maxTime / 10);
 
     // Generate a random number from minTimeRounded to maxTimeRounded
-    this.#workoutsCount = Math.floor((Math.random() * maxTimeRounded) + minTimeRounded);
+    this.#workoutsCount = Math.floor(Math.random() * (maxTimeRounded - minTimeRounded + 1)) + minTimeRounded;
+
   }
 }
 
