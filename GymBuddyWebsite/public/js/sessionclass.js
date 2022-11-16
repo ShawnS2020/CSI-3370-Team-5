@@ -27,6 +27,7 @@ class Session {
   }
 
   setSessionWorkouts(muscles) {
+    this.setWorkoutsCount(this.#minTime, this.#maxTime);
     const tempArray = arrayTricepsWorkouts;
 
 
