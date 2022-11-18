@@ -1,4 +1,4 @@
-import {session} from "./session.js";
+// import {session} from "./session.js";
 
 class Workout {
 

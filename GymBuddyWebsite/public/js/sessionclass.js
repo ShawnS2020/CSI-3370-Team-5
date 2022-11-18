@@ -18,12 +18,66 @@ class Session {
     this.#muscles = muscles;
     this.#minTime = minTime;
     this.#maxTime = maxTime;
+  }
 
-    // this.#sessionWorkout1 = this.setWorkouts();
+  getGoal() {
+    return this.#goal;
+  }
+
+  getMuscles() {
+    return this.#muscles;
+  }
+
+  getMinTime() {
+    return this.#minTime;
+  }
+
+  getMaxTime() {
+    return this.#maxTime;
+  }
+
+  getWorkoutsCount() {
+    return this.#workoutsCount;
   }
 
   getSessionWorkouts() {
     return this.#sessionWorkouts;
+  }
+
+  getRepCount() {
+    return this.#repCount;
+  }
+
+  setGoal(g) {
+    this.#goal = g;
+  }
+
+  setMuscles(m) {
+    this.#muscles = m;
+  }
+
+  setMinTime(t) {
+    this.#minTime = t;
+  }
+
+  setMaxTime(t) {
+    this.#maxTime = t;
+  }
+
+  // Calculates the amount of workouts in your session
+  // Using 10 mins as everage workout time
+  setWorkoutsCount(minTime, maxTime) {
+    // Round minTime and maxTime divided by 10 mins
+    const minTimeRounded = Math.floor(minTime / 10);
+    const maxTimeRounded = Math.floor(maxTime / 10);
+
+    // Generate a random number from minTimeRounded to maxTimeRounded
+    this.#workoutsCount = Math.floor(Math.random() * (maxTimeRounded - minTimeRounded + 1)) + minTimeRounded;
+    // Makes it so there will always be at least one workout
+    if (this.#workoutsCount == 0) {
+      this.#workoutsCount = 1;
+    }
+
   }
 
   setSessionWorkouts(muscles, minTime, maxTime) {
@@ -51,10 +105,6 @@ class Session {
     }
   }
 
-  getRepCount() {
-    return this.#repCount;
-  }
-
   // Strength: 1 to 5 reps
   // Hypertrophy: 8 to 12 reps
   // Endurance: 12 to 20+ reps
@@ -74,41 +124,6 @@ class Session {
     }
   }
 
-  getGoal() {
-    return this.#goal;
-  }
-
-  getMuscles() {
-    return this.#muscles;
-  }
-
-  getMinTime() {
-    return this.#minTime;
-  }
-
-  getMaxTime() {
-    return this.#maxTime;
-  }
-
-  getWorkoutsCount() {
-    return this.#workoutsCount;
-  }
-
-  // Calculates the amount of workouts in your session
-  // Using 10 mins as everage workout time
-  setWorkoutsCount(minTime, maxTime) {
-    // Round minTime and maxTime divided by 10 mins
-    const minTimeRounded = Math.floor(minTime / 10);
-    const maxTimeRounded = Math.floor(maxTime / 10);
-
-    // Generate a random number from minTimeRounded to maxTimeRounded
-    this.#workoutsCount = Math.floor(Math.random() * (maxTimeRounded - minTimeRounded + 1)) + minTimeRounded;
-    // Makes it so there will always be at least one workout
-    if (this.#workoutsCount == 0) {
-      this.#workoutsCount = 1;
-    }
-
-  }
 }
 
 export {Session};

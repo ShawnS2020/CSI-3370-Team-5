@@ -1,8 +1,11 @@
 import {Session} from "./sessionclass.js";
 
-const a = ["Triceps"];
+const sessionGoal = localStorage.getItem("sessionGoal");
+const sessionMuscles = localStorage.getItem("sessionMuscles");
+const sessionMinTime = localStorage.getItem("minTime");
+const sessionMaxTime = localStorage.getItem("maxTime");
 
-const session = new Session("Strength", a, 10, 30);
+const session = new Session(sessionGoal, JSON.parse(sessionMuscles), sessionMinTime, sessionMaxTime);
 
 if (window.location.pathname == "/session") {
 

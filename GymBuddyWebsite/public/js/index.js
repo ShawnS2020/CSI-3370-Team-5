@@ -1,3 +1,7 @@
+import {Session} from "./sessionclass.js";
+
+
+
 if (window.location.pathname == "/") {
 
   const selectGoal = document.getElementById("select-goal");
@@ -5,7 +9,7 @@ if (window.location.pathname == "/") {
   const inputTime1 = document.getElementById("input-time-1");
   const inputTime2 = document.getElementById("input-time-2");
 
-  var selectedGoal = "";
+  var selectedGoal;
   const selectedMuscles = [];
   var minTime = 0;
   var maxTime = 0;
@@ -15,7 +19,7 @@ if (window.location.pathname == "/") {
     location.href = "workoutslist";
   });
 
-  // Generate button
+  // Generate session button
   document.getElementById("btn-generate").addEventListener("click", function() {
     // Checks if all forms all filled
     if (selectGoal.checkValidity() && selectMuscles.checkValidity() && inputTime1.checkValidity() && inputTime2.checkValidity()) {
@@ -31,7 +35,12 @@ if (window.location.pathname == "/") {
         }
       }
 
-      // const session = new Session(selectedGoal, selectedMuscles, minTime, maxTime);
+      // Storing this data becuase exports have to be top-level
+      localStorage.setItem("sessionGoal", selectedGoal);
+      localStorage.setItem("sessionMuscles", JSON.stringify(selectedMuscles));
+      localStorage.setItem("minTime", minTime);
+      localStorage.setItem("maxTime", maxTime);
+
       // Opens session page
       location.href = "session";
     }
