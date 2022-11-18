@@ -1,4 +1,4 @@
-import {arrayWorkoutsList, arrayTricepsWorkouts} from "./workoutslist.js";
+import {workoutsList} from "./workoutslist.js";
 
 // This link has good notes on rep/set/workout counts for each goal
 // https://vitalrecord.tamhsc.edu/how-to-exercise-for-muscular-strength-endurance-and-size/
@@ -6,7 +6,7 @@ import {arrayWorkoutsList, arrayTricepsWorkouts} from "./workoutslist.js";
 class Session {
 
   #goal;
-  #muscles;
+  #muscles = [];
   #minTime;
   #maxTime;
   #workoutsCount;
@@ -26,27 +26,28 @@ class Session {
     return this.#sessionWorkouts;
   }
 
-  setSessionWorkouts(muscles) {
-    this.setWorkoutsCount(this.#minTime, this.#maxTime);
-    const tempArray = arrayTricepsWorkouts;
+  setSessionWorkouts(muscles, minTime, maxTime) {
+    this.setWorkoutsCount(minTime, maxTime)
+    const possibleSessionWorkouts = [];
 
-
-    for (let i = 0; i < this.#workoutsCount; i ++) {
-      switch (muscles.toLowerCase()) {
-        case "biceps":
-        //
-        break;
-
-        case "triceps":
-        const randomTricepsWorkout = tempArray[Math.floor(Math.random() * arrayTricepsWorkouts.length)];
-        this.#sessionWorkouts.push(randomTricepsWorkout);
-        tempArray.splice(tempArray.indexOf(randomTricepsWorkout), 1);
-        break;
-
-        case "chest":
-        //
-        break;
+    // Creates an array of possible workouts according to the selected muscles
+    for (let i = 0; i < workoutsList.length; i ++) {
+      for (let j = 0; j < workoutsList[i].getMuscles().length; j ++) {
+        for (let k = 0; k < muscles.length; k ++) {
+          if (workoutsList[i].getMuscles()[j].toLowerCase() == muscles[k].toLowerCase()) {
+            possibleSessionWorkouts.push(workoutsList[i]);
+            k = muscles.length;
+            j = workoutsList[i].getMuscles().length;
+          }
+        }
       }
+    }
+
+    //
+    for (let i = 0; i < this.#workoutsCount; i++) {
+      const randomNum = Math.floor(Math.random() * possibleSessionWorkouts.length);
+      this.#sessionWorkouts.push(possibleSessionWorkouts[randomNum]);
+      possibleSessionWorkouts.splice(randomNum, 1);
     }
   }
 
@@ -93,6 +94,7 @@ class Session {
     return this.#workoutsCount;
   }
 
+  // Calculates the amount of workouts in your session
   // Using 10 mins as everage workout time
   setWorkoutsCount(minTime, maxTime) {
     // Round minTime and maxTime divided by 10 mins
@@ -101,6 +103,10 @@ class Session {
 
     // Generate a random number from minTimeRounded to maxTimeRounded
     this.#workoutsCount = Math.floor(Math.random() * (maxTimeRounded - minTimeRounded + 1)) + minTimeRounded;
+    // Makes it so there will always be at least one workout
+    if (this.#workoutsCount == 0) {
+      this.#workoutsCount = 1;
+    }
 
   }
 }

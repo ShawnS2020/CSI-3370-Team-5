@@ -12,14 +12,14 @@
     <main id="">
       <div>
         <label for="goal-options">What is your goal today?</label>
-        <select class="" name="goal-options" id="goal-options">
+        <select class="" id="select-goal" required>
           <option value="strength">Strength</option>
           <option value="hypertrophy">Hypertrophy</option>
           <option value="endurance">Endurance</option>
         </select>
 
         <label class="label-1-2 label-muscle" for="muscle-options">"What muscle groups would you like to workout?"</label>
-        <select class="" name="mucle-options" id="muscle-options">
+        <select class="" id="select-muscles" multiple required>
           <option value="biceps">Biceps</option>
           <option value="triceps">Triceps</option>
           <option value="chest">Chest</option>
@@ -27,14 +27,14 @@
         </select>
 
         <label class="label-1-2 label-time" for="time-range">Select a time range for your workout.</label>
-        <input class="input-time" type="text" name="time-range" value="">
+        <input class="input-time" id="input-time-1" type="text" value="20" required>
         <span>mins</span>
-        <input class="input-time" type="text" name="time-range" value="">
+        <input class="input-time" id="input-time-2" type="text" value="30" required>
         <span>mins</span>
       </div>
       <br>
-      <button id="btn-to-workout-list" type="button" name="button">Workouts list</button>
-      <button id="btn-generate" type="button" name="button">Generate</button>
+      <button id="btn-to-workout-list" type="button">Workouts list</button>
+      <button id="btn-generate" type="button">Generate</button>
     </main>
     <script type="module" type="text/javascript" src="../js/index.js"></script>
   </body>

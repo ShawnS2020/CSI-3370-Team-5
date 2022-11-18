@@ -4,7 +4,7 @@ class Workout {
 
   #name;          // Name of the workout
   #description;   // Description of the workout
-  #muscles;       // Muscles used in the workout
+  #muscles = [];       // Muscles used in the workout
   #setCount;
   // #repCount;
 

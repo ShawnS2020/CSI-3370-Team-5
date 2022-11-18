@@ -1,6 +1,8 @@
 import {Session} from "./sessionclass.js";
 
-const session = new Session("Strength", "Triceps", 20, 30);
+const a = ["Triceps"];
+
+const session = new Session("Strength", a, 10, 30);
 
 if (window.location.pathname == "/session") {
 
@@ -9,7 +11,7 @@ if (window.location.pathname == "/session") {
   });
 
   // setSessionWorkouts
-  session.setSessionWorkouts(session.getMuscles());
+  session.setSessionWorkouts(session.getMuscles(), session.getMinTime(), session.getMaxTime());
   // setRepCount
   session.setRepCount(session.getGoal());
 
