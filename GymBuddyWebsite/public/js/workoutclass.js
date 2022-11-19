@@ -6,7 +6,6 @@ class Workout {
   #description;   // Description of the workout
   #muscles = [];       // Muscles used in the workout
   #setCount;
-  // #repCount;
 
   constructor(name, description, muscles) {
     this.#name = name;
@@ -36,29 +35,6 @@ class Workout {
       break;
     }
   }
-
-  // getRepCount() {
-  //   return this.#repCount;
-  // }
-  //
-  // // Strength: 1 to 5 reps
-  // // Hypertrophy: 8 to 12 reps
-  // // Endurance: 12 to 20+ reps
-  // setRepCount(goal) {
-  //   switch (goal) {
-  //     case "Strength":
-  //     this.#repCount = "1 to 5 reps each";
-  //     break;
-  //
-  //     case "Hypertrophy":
-  //     this.#repCount = "8 to 12 reps each";
-  //     break;
-  //
-  //     case "Endurance":
-  //     this.#repCount = "12 to 20+ reps each";
-  //     break;
-  //   }
-  // }
 
   getName() {
     return this.#name;

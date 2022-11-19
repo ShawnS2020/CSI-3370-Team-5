@@ -96,9 +96,11 @@ class Session {
         }
       }
     }
-
-    //
-    for (let i = 0; i < this.#workoutsCount; i++) {
+    // Made this because the actual length will change in the for loop
+    const length = possibleSessionWorkouts.length;
+    // Picks random workout objects from the list of possible workouts
+    // And removes each selected workout from this list so there is no repeats
+    for (let i = 0; i < this.#workoutsCount && i < length; i++) {
       const randomNum = Math.floor(Math.random() * possibleSessionWorkouts.length);
       this.#sessionWorkouts.push(possibleSessionWorkouts[randomNum]);
       possibleSessionWorkouts.splice(randomNum, 1);

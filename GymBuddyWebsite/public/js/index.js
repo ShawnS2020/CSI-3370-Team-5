@@ -1,7 +1,5 @@
 import {Session} from "./sessionclass.js";
 
-
-
 if (window.location.pathname == "/") {
 
   const selectGoal = document.getElementById("select-goal");
@@ -14,8 +12,53 @@ if (window.location.pathname == "/") {
   var minTime = 0;
   var maxTime = 0;
 
+  const groupDelts = document.getElementById("group-shoulders");
+  const groupArms = document.getElementById("group-arms");
+  const groupLegs = document.getElementById("group-legs");
+  const groupBack = document.getElementById("group-back");
+
+  const muscleGroups = document.getElementsByClassName("group");
+
+  selectMuscles.addEventListener("mouseover", function() {
+    selectMuscles.style.height = "300px";
+    selectMuscles.style.marginBottom = "-300px";
+    groupArms.label = "Arms";
+  });
+
+  selectMuscles.addEventListener("mouseout", function() {
+    selectMuscles.style.height = "18.8px";
+    groupArms.label = "Muscles";
+  });
+
+  // Used in the following event listener to check if all options are selected
+  const allEqual = arr => arr.every(val => val === arr[0]);
+
+  // Event listener for clicking a group of muscles
+  for (let i = 0; i < muscleGroups.length; i ++) {
+    muscleGroups[i].addEventListener("click", function() {
+
+        if (event.target == muscleGroups[i]) {
+          const array = [];
+          for (let k = 0; k < muscleGroups[i].children.length; k ++) {
+          array.push(muscleGroups[i].children[k].selected);
+          }
+
+          if (allEqual(array)) {
+            for (let j = 0; j < muscleGroups[i].children.length; j ++) {
+              muscleGroups[i].children[j].selected = !muscleGroups[i].children[j].selected;
+            }
+          }
+          else {
+            for (let j = 0; j < muscleGroups[i].children.length; j ++) {
+              muscleGroups[i].children[j].selected = false;
+            }
+          }
+        }
+      });
+  }
+
   // Workouts list button
-  document.getElementById("btn-to-workout-list").addEventListener("click", function() {
+  document.getElementById("btn-to-workouts-list").addEventListener("click", function() {
     location.href = "workoutslist";
   });
 

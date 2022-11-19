@@ -6,6 +6,11 @@
   width: 40px;
 }
 
+#select-muscles {
+  height: 18.8px;
+  vertical-align: top;
+}
+
 #btn-generate {
   margin-left: 20px;
 }

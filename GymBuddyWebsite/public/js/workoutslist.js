@@ -4,20 +4,17 @@ import {Workout} from "./workoutclass.js";
 const workout1 = new Workout("Bicep curls", "Curl your biceps", ["Biceps"]);
 const workout2 = new Workout("Tricep extensions", "Extend your triceps", ["Triceps"]);
 const workout3 = new Workout("Bench press", "Press with your chest", ["Chest", "triceps", "front delts"]);
-const workout4 = new Workout("Push-ups", "Push the floor", ["Chest", "triceps", "front delts", "core"])
+const workout4 = new Workout("Push-ups", "Push the floor", ["Chest", "triceps", "front delts", "core"]);
+const workout5 = new Workout("Chin-ups", "Chin to the bar. Reverse grip", ["Biceps", "Upper back"]);
+const workout6 = new Workout("Pull-ups", "Chin to the bar. Forward grip", ["Biceps", "Upper back"]);
+const workout7 = new Workout("Deadlifts", "Pick up dat bar", ["Core", "glutes", "hamstrings", "lower back", "upper back"]);
+const workout8 = new Workout("Lat pulldowns", "Pulldown dat bar", ["Biceps", "rear delts", "upper back"]);
+const workout9 = new Workout("Rows", "Row however you row", ["Biceps", "rear delts", "upper back"]);
+const workout10 = new Workout("Squats", "Squat dat bar", ["Core", "glutes", "quads"]);
+const workout11 = new Workout("Overhead press", "Raise dat bar", ["Chest", "triceps", "rear delts", "upper delts"]);
 
 // Array of all workout objects
-const workoutsList = [workout1, workout2, workout3, workout4];
-
-// Array of all triceps workout objects
-// const arrayTricepsWorkouts = [];
-// const tricepsRegExp = new RegExp(/triceps/);
-// for (let i = 0; i < workoutsList.length; i ++) {
-//   if (tricepsRegExp.test(workoutsList[i].getMuscles().toLowerCase())) {
-//     arrayTricepsWorkouts.push(workoutsList[i]);
-//   }
-// }
-
+const workoutsList = [workout1, workout2, workout3, workout4, workout5, workout6, workout7, workout8, workout9, workout10, workout11];
 
 
 if (window.location.pathname == "/workoutslist") {
@@ -28,20 +25,25 @@ if (window.location.pathname == "/workoutslist") {
     });
 
     // Populating workoutslist.html with data
-    // Workout 1
-    document.getElementById("h1-workout1Name").innerHTML = workoutsList[0].getName();
-    document.getElementById("p-workout1Description").innerHTML = workoutsList[0].getDescription();
-    document.getElementById("p-workout1Muscles").innerHTML = workoutsList[0].getMuscles();
+    for (let i = 0; i < workoutsList.length; i ++) {
+      // Creating html elements for each data
+      const div = document.createElement("div");
+      const h1 = document.createElement("h1");
+      const pDesc = document.createElement("p");
+      const pMusc = document.createElement("p");
 
-    // Workout 2
-    document.getElementById("h1-workout2Name").innerHTML = workoutsList[1].getName();
-    document.getElementById("p-workout2Description").innerHTML = workoutsList[1].getDescription();
-    document.getElementById("p-workout2Muscles").innerHTML = workoutsList[1].getMuscles();
+      // Populating html elements with data
+      h1.innerHTML = workoutsList[i].getName();
+      pDesc.innerHTML = workoutsList[i].getDescription();
+      pMusc.innerHTML = workoutsList[i].getMuscles();
 
-    // Workout 3
-    document.getElementById("h1-workout3Name").innerHTML = workoutsList[2].getName();
-    document.getElementById("p-workout3Description").innerHTML = workoutsList[2].getDescription();
-    document.getElementById("p-workout3Muscles").innerHTML = workoutsList[2].getMuscles();
+      // Appending html elements in workoutslist.html
+      document.getElementById("main").append(div);
+      div.append(h1, pDesc, pMusc);
+
+      // Adding css class
+      div.classList.add("div-workout");
+    }
 }
 
 export {workoutsList};
