@@ -80,7 +80,8 @@ if (window.location.pathname == "/") {
 
       // Storing this data becuase exports have to be top-level
       localStorage.setItem("sessionGoal", selectedGoal);
-      localStorage.setItem("sessionMuscles", JSON.stringify(selectedMuscles));
+      // Local storage is only for Strings. The selectedMuscles array has to be converted to a String.
+      localStorage.setItem("sessionMuscles", selectedMuscles.join(" "));
       localStorage.setItem("minTime", minTime);
       localStorage.setItem("maxTime", maxTime);
 

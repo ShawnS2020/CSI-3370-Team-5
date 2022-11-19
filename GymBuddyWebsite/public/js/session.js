@@ -5,7 +5,8 @@ const sessionMuscles = localStorage.getItem("sessionMuscles");
 const sessionMinTime = localStorage.getItem("minTime");
 const sessionMaxTime = localStorage.getItem("maxTime");
 
-const session = new Session(sessionGoal, JSON.parse(sessionMuscles), sessionMinTime, sessionMaxTime);
+// Instantiating Session object with data from local storage. sessionMuscles is converted back to an array.
+const session = new Session(sessionGoal, sessionMuscles.split(" "), sessionMinTime, sessionMaxTime);
 
 if (window.location.pathname == "/session") {
 
