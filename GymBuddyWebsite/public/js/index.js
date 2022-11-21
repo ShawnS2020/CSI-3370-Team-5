@@ -1,4 +1,8 @@
-import {Session} from "./sessionclass.js";
+// ***SINGLETON PATTERN SOLUTION***
+// import {Session} from "./sessionclass.js";
+
+// ***SINGLETON PATTERN SOLUTION***
+// const session = Session.instance();
 
 if (window.location.pathname == "/") {
 
@@ -78,12 +82,20 @@ if (window.location.pathname == "/") {
         }
       }
 
+      // ***LOCALSTORAGE SOLUTION***
       // Storing this data becuase exports have to be top-level
       localStorage.setItem("sessionGoal", selectedGoal);
       // Local storage is only for Strings. The selectedMuscles array has to be converted to a String.
       localStorage.setItem("sessionMuscles", selectedMuscles.join(" "));
       localStorage.setItem("minTime", minTime);
       localStorage.setItem("maxTime", maxTime);
+
+      //***SINGLETON PATTERN SOLUTION***
+      // session.setGoal(selectedGoal);
+      // session.setMuscles(selectedMuscles);
+      // session.setMinTime(minTime);
+      // session.setMaxTime(maxTime);
+      // console.log(Session.instance());
 
       // Opens session page
       location.href = "session";
@@ -94,3 +106,6 @@ if (window.location.pathname == "/") {
   });
 
 }
+
+// ***SINGLETON PATTERN SOLUTION
+// export {session};

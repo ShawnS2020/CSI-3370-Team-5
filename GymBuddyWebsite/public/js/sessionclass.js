@@ -13,12 +13,42 @@ class Session {
   #sessionWorkouts = [];
   #repCount;
 
+  //***SINGLETON PATTERN SOLUTION***
+  // Still cannot use singleton because upon loading session.js, this file runs again and sets #uniqueInstance to null;
+  // static #uniqueInstance = null;
+  // static #isInternalConstructing = false;
+
+  //***SINGLETON PATTERN SOLUTION***
+  // There are no private constructors is JS
+  // Private construction can still be accomplished using a private static flag
+  // constructor (goal, muscles, minTime, maxTime) {
+  //   if (!Session.#isInternalConstructing) {
+  //     throw new TypeError("PrivateConstructor is not constructable");
+  //   }
+  //   this.#goal = goal;
+  //   this.#muscles = muscles;
+  //   this.#minTime = minTime;
+  //   this.#maxTime = maxTime;
+  // }
+
   constructor(goal, muscles, minTime, maxTime) {
     this.#goal = goal;
     this.#muscles = muscles;
     this.#minTime = minTime;
     this.#maxTime = maxTime;
   }
+
+  //***SINGLETON PATTERN SOLUTION***
+  // static instance() {
+  //   console.log(Session.#uniqueInstance);
+  //   if (Session.#uniqueInstance == null) {
+  //     Session.#isInternalConstructing = true;
+  //     Session.#uniqueInstance = new Session();
+  //     Session.#isInternalConstructing = false;
+  //     console.log(Session.#uniqueInstance);
+  //   }
+  //   return Session.#uniqueInstance;
+  // }
 
   getGoal() {
     return this.#goal;
