@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Workouts List</title>
+    <link rel="stylesheet" href="css/workoutsliststyles.css">
+  </head>
+  <body>
+    <header>
+
+      <form class="" action="/workoutslist" method="post">
+        <button id="btn-back" type="submit" name="button">Back</button>
+      </form>
+
+      <button id="btn-back-nopost" type="button" name="button">Back</button>
+
+      <h1>Workouts List</h1>
+    </header>
+    <main id="main">
+      <% for (let i = 0; i < workoutsList.length; i++) { %>
+        <div class="div-workout">
+          <h1><%= workoutsList[i].getName() %></h1>
+          <p><%= workoutsList[i].getDescription() %></p>
+          <p><%= workoutsList[i].getMuscles().join(", ") %></p>
+        </div>
+      <% } %>
+    </main>
+    <script type="module" type="text/javascript" src="../js/workoutslist.js"></script>
+  </body>
+</html>

@@ -4,17 +4,21 @@
 // ***SINGLETON PATTERN SOLUTION***
 // const session = Session.instance();
 
-if (window.location.pathname == "/") {
+// const session = new Session();
+
+// if (typeof window !== "undefined") {
+
+// if (window.location.pathname == "/") {
 
   const selectGoal = document.getElementById("select-goal");
   const selectMuscles = document.getElementById("select-muscles");
   const inputTime1 = document.getElementById("input-time-1");
   const inputTime2 = document.getElementById("input-time-2");
 
-  var selectedGoal;
-  const selectedMuscles = [];
-  var minTime = 0;
-  var maxTime = 0;
+  // let selectedGoal;
+  // const selectedMuscles = [];
+  // let minTime = 0;
+  // let maxTime = 0;
 
   const groupDelts = document.getElementById("group-shoulders");
   const groupArms = document.getElementById("group-arms");
@@ -34,7 +38,7 @@ if (window.location.pathname == "/") {
     groupArms.label = "Muscles";
   });
 
-  // Used in the following event listener to check if all options are selected
+  // Used in the following event listener to check if all options of a group are selected
   const allEqual = arr => arr.every(val => val === arr[0]);
 
   // Event listener for clicking a group of muscles
@@ -63,49 +67,55 @@ if (window.location.pathname == "/") {
 
   // Workouts list button
   document.getElementById("btn-to-workouts-list").addEventListener("click", function() {
+    selectGoal.removeAttribute("required");
+    selectMuscles.removeAttribute("required");
+    inputTime1.removeAttribute("required");
+    inputTime2.removeAttribute("required");
     location.href = "workoutslist";
   });
 
   // Generate session button
-  document.getElementById("btn-generate").addEventListener("click", function() {
-    // Checks if all forms all filled
-    if (selectGoal.checkValidity() && selectMuscles.checkValidity() && inputTime1.checkValidity() && inputTime2.checkValidity()) {
-      // Declaring and assigning form data to constants
-      selectedGoal = selectGoal.options[selectGoal.selectedIndex].value;
-      minTime = Math.min(inputTime1.value, inputTime2.value);
-      maxTime = Math.max(inputTime1.value, inputTime2.value);
+  // document.getElementById("btn-generate").addEventListener("click", function() {
+  //
+  //   // Checks if all forms all filled
+  //   if (selectGoal.checkValidity() && selectMuscles.checkValidity() && inputTime1.checkValidity() && inputTime2.checkValidity()) {
+  //     // Declaring and assigning form data to constants
+  //     selectedGoal = selectGoal.options[selectGoal.selectedIndex].value;
+  //     minTime = Math.min(inputTime1.value, inputTime2.value);
+  //     maxTime = Math.max(inputTime1.value, inputTime2.value);
+  //
+  //     // Loops through all muscle options and adds the selected options to the array
+  //     for (let i = 0; i < selectMuscles.options.length; i++) {
+  //       if (selectMuscles.options[i].selected){
+  //         selectedMuscles.push(selectMuscles.options[i].value);
+  //       }
+  //     }
+  //
+  //     // ***LOCALSTORAGE SOLUTION***
+  //     // Storing this data becuase exports have to be top-level
+  //     localStorage.setItem("sessionGoal", selectedGoal);
+  //     // Local storage is only for Strings. The selectedMuscles array has to be converted to a String.
+  //     localStorage.setItem("sessionMuscles", selectedMuscles.join(" "));
+  //     localStorage.setItem("minTime", minTime);
+  //     localStorage.setItem("maxTime", maxTime);
+  //
+  //     //***SINGLETON PATTERN SOLUTION***
+  //     session.setGoal(selectedGoal);
+  //     session.setMuscles(selectedMuscles);
+  //     session.setMinTime(minTime);
+  //     session.setMaxTime(maxTime);
+  //
+  //     JSON.stringify(session);
+  //
+  //     // Opens session page
+  //     location.href = "session";
+  //   }
+  //   else {
+  //     alert("Please fill out all forms!");
+  //   }
+  // });
 
-      // Loops through all muscle options and adds the selected options to the array
-      for (let i = 0; i < selectMuscles.options.length; i++) {
-        if (selectMuscles.options[i].selected){
-          selectedMuscles.push(selectMuscles.options[i].value);
-        }
-      }
-
-      // ***LOCALSTORAGE SOLUTION***
-      // Storing this data becuase exports have to be top-level
-      localStorage.setItem("sessionGoal", selectedGoal);
-      // Local storage is only for Strings. The selectedMuscles array has to be converted to a String.
-      localStorage.setItem("sessionMuscles", selectedMuscles.join(" "));
-      localStorage.setItem("minTime", minTime);
-      localStorage.setItem("maxTime", maxTime);
-
-      //***SINGLETON PATTERN SOLUTION***
-      // session.setGoal(selectedGoal);
-      // session.setMuscles(selectedMuscles);
-      // session.setMinTime(minTime);
-      // session.setMaxTime(maxTime);
-      // console.log(Session.instance());
-
-      // Opens session page
-      location.href = "session";
-    }
-    else {
-      alert("Please fill out all forms!");
-    }
-  });
-
-}
+// }
 
 // ***SINGLETON PATTERN SOLUTION
 // export {session};

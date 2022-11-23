@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Gym Buddy</title>
+    <link rel="stylesheet" href="../css/mainstyles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Gym Buddy</h1>
+    </header>
+    <main id="">
+
+      <form class="form-generate" action="/" method="post">
+        <div>
+
+          <label for="select-goal">What is your goal today?</label>
+          <select class="" id="select-goal" name="goal" required>
+            <option value="Strength">Strength</option>
+            <option value="Hypertrophy">Hypertrophy</option>
+            <option value="Endurance">Endurance</option>
+          </select>
+
+          <label class="label-1-2 label-muscle" for="select-muscles">"What muscle groups would you like to workout?"</label>
+          <select class="" id="select-muscles" name="muscles" multiple required>
+
+            <optgroup class="group" id="group-arms" label="Muscles">
+              <option value="biceps">Biceps</option>
+              <option value="triceps">Triceps</option>
+            </optgroup>
+
+            <optgroup class="group" id="group-back" label="Back">
+              <option value="lower back">Lower back</option>
+              <option value="upper back">Upper back</option>
+            </optgroup>
+
+            <option style="font-weight: bold;" value="chest">Chest</option>
+            <option style="font-weight: bold;" value="core">Core</option>
+
+            <optgroup class="group" id="group-legs" label="Legs">
+              <option value="calves">Calves</option>
+              <option value="glutes">Glutes</option>
+              <option value="hamstrings">Hamstrings</option>
+              <option value="quads">Quads</option>
+            </optgroup>
+
+            <optgroup class="group" id="group-shoulders" label="Shoulders">
+              <option value="front delts">Front delts</option>
+              <option value="rear delts">Rear delts</option>
+              <option value="upper delts">Upper delts</option>
+            </optgroup>
+
+          </select>
+
+          <label class="label-1-2 label-time" for="input-time">Select a time range for your workout.</label>
+          <input class="input-time" id="input-time-1" type="text" name="time-1" value="" required autocomplete="off">
+          <span>mins</span>
+          <input class="input-time" id="input-time-2" type="text" name="time-2" value="" required autocomplete="off">
+          <span>mins</span>
+
+        </div>
+
+        <br>
+        <!-- </form> -->
+        <button id="btn-to-workouts-list" type="submit" name="btn" value="workoutsList">Workouts list</button>
+        <!-- <form class="form-generate" action="/" method="post"> -->
+        <button id="btn-generate" type="submit" name="btn" value="generate">Generate</button>
+      </form>
+    </main>
+    <script type="module" type="text/javascript" src="../js/index.js"></script>
+  </body>
+</html>

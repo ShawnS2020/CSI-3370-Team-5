@@ -1,4 +1,5 @@
 import {workoutsList} from "./workoutslist.js";
+// const workoutsList = require(__dirname + "/workoutslist.js");
 
 // This link has good notes on rep/set/workout counts for each goal
 // https://vitalrecord.tamhsc.edu/how-to-exercise-for-muscular-strength-endurance-and-size/
@@ -158,4 +159,5 @@ class Session {
 
 }
 
+// exports = Session;
 export {Session};

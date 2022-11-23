@@ -49,4 +49,5 @@ class Workout {
   }
 }
 
+// module.exports = Workout;
 export {Workout};

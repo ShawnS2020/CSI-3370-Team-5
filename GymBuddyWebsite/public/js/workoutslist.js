@@ -1,4 +1,5 @@
 import {Workout} from "./workoutclass.js";
+// const Workout = require(__dirname + "/workoutclass.js");
 
 // Instantiating Workout objects
 const workout1 = new Workout("Bicep curls", "Curl your biceps", ["Biceps"]);
@@ -18,33 +19,41 @@ const workout13 = new Workout("Shrugs", "Shrug your shoulders", ["Upper back"]);
 // Array of all workout objects
 const workoutsList = [workout1, workout2, workout3, workout4, workout5, workout6, workout7, workout8, workout9, workout10, workout11, workout12];
 
-if (window.location.pathname == "/workoutslist") {
+// function init() {
+  // console.log(document);
+
+if (typeof window !== "undefined") {
+  // location.href = "workoutslist";
+
+// if (window.location.pathname == "/workoutslist") {
 
   // Button sends you back to home screen
-  document.getElementById("btn-back").addEventListener("click", function() {
+  document.getElementById("btn-back-nopost").addEventListener("click", function() {
       location.href = "/";
-    });
+  });
 
     // Populating workoutslist.html with data
-    for (let i = 0; i < workoutsList.length; i ++) {
+    // for (let i = 0; i < workoutsList.length; i ++) {
       // Creating html elements for each data
-      const div = document.createElement("div");
-      const h1 = document.createElement("h1");
-      const pDesc = document.createElement("p");
-      const pMusc = document.createElement("p");
+      // const div = document.createElement("div");
+      // const h1 = document.createElement("h1");
+      // const pDesc = document.createElement("p");
+      // const pMusc = document.createElement("p");
 
       // Populating html elements with data
-      h1.innerHTML = workoutsList[i].getName();
-      pDesc.innerHTML = workoutsList[i].getDescription();
-      pMusc.innerHTML = workoutsList[i].getMuscles().join(", ");
+      // h1.innerHTML = workoutsList[i].getName();
+      // pDesc.innerHTML = workoutsList[i].getDescription();
+      // pMusc.innerHTML = workoutsList[i].getMuscles().join(", ");
 
       // Appending html elements in workoutslist.html
-      document.getElementById("main").append(div);
-      div.append(h1, pDesc, pMusc);
+      // document.getElementById("main").append(div);
+      // div.append(h1, pDesc, pMusc);
 
       // Adding css class
-      div.classList.add("div-workout");
-    }
+      // div.classList.add("div-workout");
+    // }
 }
 
+// module.exports = workoutsList;
 export {workoutsList};
+// export {workoutsList, init};

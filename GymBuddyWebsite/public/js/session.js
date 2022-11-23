@@ -1,8 +1,12 @@
 // ***LOCALSTORAGE SOLUTION***
-import {Session} from "./sessionclass.js";
+// import {Session} from "./sessionclass.js";
 
 // ***SINGLETON PATTERN SOLUTION***
 // import {session} from "./index.js";
+
+import {session} from "./server.js";
+
+console.log("session runnin");
 
 const sessionGoal = localStorage.getItem("sessionGoal");
 const sessionMuscles = localStorage.getItem("sessionMuscles");
@@ -11,9 +15,12 @@ const sessionMaxTime = localStorage.getItem("maxTime");
 
 // Instantiating Session object with data from local storage. sessionMuscles is converted back to an array.
 // ***LOCALSTORAGE SOLUTION***
-const session = new Session(sessionGoal, sessionMuscles.split(" "), sessionMinTime, sessionMaxTime);
+// const session = new Session(sessionGoal, sessionMuscles.split(" "), sessionMinTime, sessionMaxTime);
 
-if (window.location.pathname == "/session") {
+if (typeof window !== "undefined") {
+  location.href = "session";
+  alert("session runnin");
+  console.log(session.getGoal());
 
   document.getElementById("btn-quit").addEventListener("click", function() {
     location.href = "/";
