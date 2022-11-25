@@ -1,10 +1,8 @@
-// import {session} from "./session.js";
-
 class Workout {
 
-  #name;          // Name of the workout
-  #description;   // Description of the workout
-  #muscles = [];       // Muscles used in the workout
+  #name;
+  #description;
+  #muscles = [];
   #setCount;
 
   constructor(name, description, muscles) {
@@ -20,7 +18,7 @@ class Workout {
   // Strength: 4-6 sets
   // Hypertrophy: 3-5 sets
   // Endurance: 2-3 sets
-  setSetCount(goal) {
+  randomizeSetCount(goal) {
     switch (goal) {
       case "Strength":
       this.#setCount = Math.floor((Math.random() * (6 - 4 + 1)) + 4);
@@ -49,5 +47,4 @@ class Workout {
   }
 }
 
-// module.exports = Workout;
 export {Workout};

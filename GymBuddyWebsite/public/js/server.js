@@ -1,26 +1,13 @@
-// ***COMMONJS***
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const path = require("path");
-// const Session = require(__dirname + "/sessionclass.js")
-
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import {fileURLToPath} from 'url';
-// import {Session} from "./sessionclass.js";
 import {workoutsList} from "./workoutslist.js";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __js = path.dirname(__filename);
 const __public = path.dirname(__js);
-
-let selectedGoal;
-let selectedMuscles;
-let minTime;
-let maxTime;
-// const session = new Session();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));

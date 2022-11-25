@@ -1,5 +1,4 @@
 import {workoutsList} from "./workoutslist.js";
-// const workoutsList = require(__dirname + "/workoutslist.js");
 
 // This link has good notes on rep/set/workout counts for each goal
 // https://vitalrecord.tamhsc.edu/how-to-exercise-for-muscular-strength-endurance-and-size/
@@ -12,26 +11,9 @@ class Session {
   #maxTime;
   #workoutsCount;
   #sessionWorkouts = [];
-  #repCount;
+  #repRange;
 
-  //***SINGLETON PATTERN SOLUTION***
-  // Still cannot use singleton because upon loading session.js, this file runs again and sets #uniqueInstance to null;
-  // static #uniqueInstance = null;
-  // static #isInternalConstructing = false;
-
-  //***SINGLETON PATTERN SOLUTION***
-  // There are no private constructors is JS
-  // Private construction can still be accomplished using a private static flag
-  // constructor (goal, muscles, minTime, maxTime) {
-  //   if (!Session.#isInternalConstructing) {
-  //     throw new TypeError("PrivateConstructor is not constructable");
-  //   }
-  //   this.#goal = goal;
-  //   this.#muscles = muscles;
-  //   this.#minTime = minTime;
-  //   this.#maxTime = maxTime;
-  // }
-
+  // Constructor only sets user input data because Session objects will be full constructed in "randomizeSession" method
   constructor(goal, muscles, minTime, maxTime) {
     this.#goal = goal;
     this.#muscles = muscles;
@@ -39,16 +21,13 @@ class Session {
     this.#maxTime = maxTime;
   }
 
-  //***SINGLETON PATTERN SOLUTION***
-  // static instance() {
-  //   if (Session.#uniqueInstance == null) {
-  //     console.log(Session.#uniqueInstance);
-  //     Session.#isInternalConstructing = true;
-  //     Session.#uniqueInstance = new Session();
-  //     Session.#isInternalConstructing = false;
-  //   }
-  //   return Session.#uniqueInstance;
-  // }
+  randomizeSession(goal, muscles, minTime, maxTime) {
+    this.randomizeSessionWorkouts(muscles, minTime, maxTime);
+    this.setRepRange(goal);
+    for (let i = 0; i < this.#workoutsCount; i ++) {
+      this.#sessionWorkouts[i].randomizeSetCount(goal);
+    }
+  }
 
   getGoal() {
     return this.#goal;
@@ -74,8 +53,8 @@ class Session {
     return this.#sessionWorkouts;
   }
 
-  getRepCount() {
-    return this.#repCount;
+  getRepRange() {
+    return this.#repRange;
   }
 
   setGoal(g) {
@@ -96,7 +75,7 @@ class Session {
 
   // Calculates the amount of workouts in your session
   // Using 10 mins as everage workout time
-  setWorkoutsCount(minTime, maxTime) {
+  randomizeWorkoutsCount(minTime, maxTime) {
     // Round minTime and maxTime divided by 10 mins
     const minTimeRounded = Math.floor(minTime / 10);
     const maxTimeRounded = Math.floor(maxTime / 10);
@@ -110,8 +89,8 @@ class Session {
 
   }
 
-  setSessionWorkouts(muscles, minTime, maxTime) {
-    this.setWorkoutsCount(minTime, maxTime)
+  randomizeSessionWorkouts(muscles, minTime, maxTime) {
+    this.randomizeWorkoutsCount(minTime, maxTime)
     const possibleSessionWorkouts = [];
 
     // Creates an array of possible workouts according to the selected muscles
@@ -126,6 +105,7 @@ class Session {
         }
       }
     }
+
     // Made this because the actual length will change in the for loop
     const length = possibleSessionWorkouts.length;
     // Picks random workout objects from the list of possible workouts
@@ -142,23 +122,22 @@ class Session {
   // Strength: 1 to 5 reps
   // Hypertrophy: 8 to 12 reps
   // Endurance: 12 to 20+ reps
-  setRepCount(goal) {
+  setRepRange(goal) {
     switch (goal) {
       case "Strength":
-      this.#repCount = "1 to 5 reps each";
+      this.#repRange = "1 to 5 reps each";
       break;
 
       case "Hypertrophy":
-      this.#repCount = "8 to 12 reps each";
+      this.#repRange = "8 to 12 reps each";
       break;
 
       case "Endurance":
-      this.#repCount = "12 to 20+ reps each";
+      this.#repRange = "12 to 20+ reps each";
       break;
     }
   }
 
 }
 
-// exports = Session;
 export {Session};

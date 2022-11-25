@@ -1,4 +1,3 @@
-// ***SINGLETON PATTERN SOLUTION***
 import {Session} from "./sessionclass.js";
 
 if (localStorage.getItem("sessionWorkoutsNames") !== null) {
@@ -171,11 +170,5 @@ document.getElementById("btn-to-workouts-list").addEventListener("click", functi
 document.getElementById("btn-generate").addEventListener("click", function() {
   inputNaN();
   storeData();
-  localStorage.removeItem("sessionWorkoutsNames");
+  localStorage.removeItem("sessionWorkoutsCount");
 });
-
-
-
-// ***SINGLETON PATTERN SOLUTION
-// export {session};
-// export {fillForm};
