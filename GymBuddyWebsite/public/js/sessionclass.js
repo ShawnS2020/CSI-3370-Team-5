@@ -41,12 +41,11 @@ class Session {
 
   //***SINGLETON PATTERN SOLUTION***
   // static instance() {
-  //   console.log(Session.#uniqueInstance);
   //   if (Session.#uniqueInstance == null) {
+  //     console.log(Session.#uniqueInstance);
   //     Session.#isInternalConstructing = true;
   //     Session.#uniqueInstance = new Session();
   //     Session.#isInternalConstructing = false;
-  //     console.log(Session.#uniqueInstance);
   //   }
   //   return Session.#uniqueInstance;
   // }
@@ -136,6 +135,8 @@ class Session {
       this.#sessionWorkouts.push(possibleSessionWorkouts[randomNum]);
       possibleSessionWorkouts.splice(randomNum, 1);
     }
+    // workoutsCount may be larger than actual number of workouts generated if user's time input is large enough
+    this.#workoutsCount = this.#sessionWorkouts.length;
   }
 
   // Strength: 1 to 5 reps

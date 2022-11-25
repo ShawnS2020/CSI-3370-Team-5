@@ -11,7 +11,7 @@
     </header>
     <main id="">
 
-      <form class="form-generate" action="/" method="post">
+      <form id="form"  class="form-generate" action="/" method="post">
         <div>
 
           <label for="select-goal">What is your goal today?</label>
@@ -53,9 +53,9 @@
           </select>
 
           <label class="label-1-2 label-time" for="input-time">Select a time range for your workout.</label>
-          <input class="input-time" id="input-time-1" type="text" name="time-1" value="" required autocomplete="off">
+          <input class="input-time" id="input-time-1" type="text" name="time1" value="" required autocomplete="off">
           <span>mins</span>
-          <input class="input-time" id="input-time-2" type="text" name="time-2" value="" required autocomplete="off">
+          <input class="input-time" id="input-time-2" type="text" name="time2" value="" required autocomplete="off">
           <span>mins</span>
 
         </div>
@@ -64,6 +64,7 @@
         <!-- </form> -->
         <button id="btn-to-workouts-list" type="submit" name="btn" value="workoutsList">Workouts list</button>
         <!-- <form class="form-generate" action="/" method="post"> -->
+        <!-- </form> -->
         <button id="btn-generate" type="submit" name="btn" value="generate">Generate</button>
       </form>
     </main>

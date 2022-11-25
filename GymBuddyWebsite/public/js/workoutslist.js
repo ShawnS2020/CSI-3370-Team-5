@@ -28,9 +28,9 @@ if (typeof window !== "undefined") {
 // if (window.location.pathname == "/workoutslist") {
 
   // Button sends you back to home screen
-  document.getElementById("btn-back-nopost").addEventListener("click", function() {
-      location.href = "/";
-  });
+  // document.getElementById("btn-back-nopost").addEventListener("click", function() {
+  //     location.href = "/";
+  // });
 
     // Populating workoutslist.html with data
     // for (let i = 0; i < workoutsList.length; i ++) {
