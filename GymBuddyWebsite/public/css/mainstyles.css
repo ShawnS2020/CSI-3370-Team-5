@@ -1,3 +1,7 @@
+.form-generate {
+  display: inline-block;
+}
+
 .label-1-2 {
   margin-left: 50px;
 }
@@ -6,6 +10,11 @@
   width: 40px;
 }
 
-#btn-generate {
+#select-muscles {
+  height: 18.8px;
+  vertical-align: top;
+}
+
+#btn-generate, #btn-return {
   margin-left: 20px;
 }

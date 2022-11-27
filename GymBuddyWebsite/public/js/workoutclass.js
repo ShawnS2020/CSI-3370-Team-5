@@ -1,12 +1,9 @@
-import {session} from "./session.js";
-
 class Workout {
 
-  #name;          // Name of the workout
-  #description;   // Description of the workout
-  #muscles;       // Muscles used in the workout
+  #name;
+  #description;
+  #muscles = [];
   #setCount;
-  // #repCount;
 
   constructor(name, description, muscles) {
     this.#name = name;
@@ -21,7 +18,7 @@ class Workout {
   // Strength: 4-6 sets
   // Hypertrophy: 3-5 sets
   // Endurance: 2-3 sets
-  setSetCount(goal) {
+  randomizeSetCount(goal) {
     switch (goal) {
       case "Strength":
       this.#setCount = Math.floor((Math.random() * (6 - 4 + 1)) + 4);
@@ -36,29 +33,6 @@ class Workout {
       break;
     }
   }
-
-  // getRepCount() {
-  //   return this.#repCount;
-  // }
-  //
-  // // Strength: 1 to 5 reps
-  // // Hypertrophy: 8 to 12 reps
-  // // Endurance: 12 to 20+ reps
-  // setRepCount(goal) {
-  //   switch (goal) {
-  //     case "Strength":
-  //     this.#repCount = "1 to 5 reps each";
-  //     break;
-  //
-  //     case "Hypertrophy":
-  //     this.#repCount = "8 to 12 reps each";
-  //     break;
-  //
-  //     case "Endurance":
-  //     this.#repCount = "12 to 20+ reps each";
-  //     break;
-  //   }
-  // }
 
   getName() {
     return this.#name;

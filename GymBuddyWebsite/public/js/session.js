@@ -1,33 +1,63 @@
 import {Session} from "./sessionclass.js";
 
-const session = new Session("Strength", "Triceps", 20, 30);
+// Getting form data from sessionStorage
+const selectedGoal = sessionStorage.getItem("selectedGoal");
+const selectedMuscles = sessionStorage.getItem("selectedMuscles");
+const minTime = Math.min(sessionStorage.getItem("time1"), sessionStorage.getItem("time2"));
+const maxTime = Math.max(sessionStorage.getItem("time1"), sessionStorage.getItem("time2"));
 
-if (window.location.pathname == "/session") {
+// Declaring variables that will be used to populate html elements
+// Will be assigned to data from sessionStorage if a session already exists or new data if not
+let sessionWorkoutsCount;
+let sessionWorkoutsNames;
+let sessionWorkoutsSetCounts;
+let sessionRepRange;
 
-  document.getElementById("btn-quit").addEventListener("click", function() {
-    location.href = "/";
-  });
+// Instantiating Session only assigns user data from forms
+// Workouts will be randomized in the "else" statement
+const session = new Session(selectedGoal, selectedMuscles.split(","), minTime, maxTime);
 
-  // setSessionWorkouts
-  session.setSessionWorkouts(session.getMuscles());
-  // setRepCount
-  session.setRepCount(session.getGoal());
 
-  // Loops through each workout in the session and
-  // sets the set count for each and
-  // adds data from each workout to session.html
-  for (let i = 0; i < session.getSessionWorkouts().length; i ++) {
-    // setSetCount
-    session.getSessionWorkouts()[i].setSetCount(session.getGoal());
 
-    document.getElementById("h2-workouts").append(session.getSessionWorkouts()[i].getName(),
-      document.createElement("br"),
-      session.getSessionWorkouts()[i].getSetCount(), " sets",
-      document.createElement("br"),
-      session.getRepCount(),
-      document.createElement("br"),);
-    document.getElementById("h2-workouts").append(document.createElement("br"));
-  }
+// Checks if a session already exists
+// Assigns variables to data from previous session if one exists
+// Creates new session if not
+if (sessionStorage.getItem("sessionWorkoutsCount") !== null) {
+  sessionWorkoutsCount = sessionStorage.getItem("sessionWorkoutsCount");
+  sessionWorkoutsNames = sessionStorage.getItem("sessionWorkoutsNames").split(",");
+  sessionWorkoutsSetCounts = sessionStorage.getItem("sessionWorkoutsSetCounts").split(",");
+  sessionRepRange = sessionStorage.getItem("sessionRepRange");
 }
+else {
+  session.randomizeSession(session.getGoal(), session.getMuscles(), session.getMinTime(), session.getMaxTime());
 
-export {session};
+  // Assigning variables using new Session object
+  sessionWorkoutsCount = session.getWorkoutsCount();
+  sessionWorkoutsNames = [];
+  sessionWorkoutsSetCounts = [];
+  sessionRepRange = session.getRepRange();
+
+  // Adding data to arrays
+  for (let i = 0; i < sessionWorkoutsCount; i ++) {
+    sessionWorkoutsNames.push(session.getSessionWorkouts()[i].getName());
+    sessionWorkoutsSetCounts.push(session.getSessionWorkouts()[i].getSetCount());
+  }
+
+  // Storing data in sessionStorage in case user quits session and wants to restore it
+  sessionStorage.setItem("sessionWorkoutsCount", sessionWorkoutsCount);
+  sessionStorage.setItem("sessionWorkoutsNames", sessionWorkoutsNames);
+  sessionStorage.setItem("sessionWorkoutsSetCounts", sessionWorkoutsSetCounts);
+  sessionStorage.setItem("sessionRepRange", sessionRepRange);
+}
+// End of "if-else" statement
+
+// Creating html and populating with data
+for (let i = 0; i < sessionWorkoutsCount; i ++) {
+  document.getElementById("h2-workouts").append(sessionWorkoutsNames[i],
+    document.createElement("br"),
+    sessionWorkoutsSetCounts[i], " sets",
+    document.createElement("br"),
+    sessionRepRange,
+    document.createElement("br"),
+    document.createElement("br"));
+}
