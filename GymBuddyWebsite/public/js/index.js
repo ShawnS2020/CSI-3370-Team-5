@@ -1,6 +1,6 @@
 import {Session} from "./sessionclass.js";
 
-if (localStorage.getItem("sessionWorkoutsNames") !== null) {
+if (sessionStorage.getItem("sessionWorkoutsNames") !== null) {
   const btnReturn = document.createElement("button");
   btnReturn.innerHTML = "Return to session";
   btnReturn.setAttribute("id", "btn-return");
@@ -16,6 +16,7 @@ if (localStorage.getItem("sessionWorkoutsNames") !== null) {
 
 // Declaring constants for each form object
 const selectGoal = document.getElementById("select-goal");
+selectGoal.selectedIndex = -1;
 const selectMuscles = document.getElementById("select-muscles");
 const inputTime1 = document.getElementById("input-time-1");
 const inputTime2 = document.getElementById("input-time-2");
@@ -28,34 +29,47 @@ const groupLegs = document.getElementById("group-legs");
 const groupBack = document.getElementById("group-back");
 const muscleGroups = document.getElementsByClassName("group");
 
+// Declaring variables that will be assigned data from sessionStorage if it exists or from user input data if not
+let selectedGoal;
+let selectedMuscles;
+let time1;
+let time2;
 
 
-// The following four "if" statements restore the forms using previous data stored in localStorage if user refreshes page
+
+// The following four "if" statements restore the forms using previous data stored in sessionStorage if it exists
 // Restores goal form
-if (localStorage.getItem("selectedGoalIndex") !== null) {
-  const selectedGoalIndex = localStorage.getItem("selectedGoalIndex");
-  selectGoal[selectedGoalIndex].selected = true;
+if (sessionStorage.getItem("selectedGoal") !== null) {
+  selectedGoal = sessionStorage.getItem("selectedGoal");
+  for (let i = 0; i < selectGoal.length; i ++) {
+    if (selectGoal[i].value == selectedGoal) {
+      selectGoal[i].selected = true;
+    }
+  }
 }
 
 // Restores muscles form
-if (localStorage.getItem("selectedMusclesIndices") !== null) {
-  const selectedMusclesIndices = localStorage.getItem("selectedMusclesIndices").split(" ");
-  if (selectedMusclesIndices[0] !== "") {
-    for (let i = 0; i < selectedMusclesIndices.length; i ++) {
-      selectMuscles[selectedMusclesIndices[i]].selected = true;
+if (sessionStorage.getItem("selectedMuscles") !== null) {
+  selectedMuscles = sessionStorage.getItem("selectedMuscles").split(",");
+  for (let i = 0; i < selectMuscles.length; i ++) {
+    for (let j = 0; j < selectedMuscles.length; j ++) {
+      if (selectMuscles[i].value == selectedMuscles[j]) {
+        selectMuscles[i].selected = true;
+        j = selectedMuscles.length;
+      }
     }
   }
 }
 
 // Restores first time input form
-if (localStorage.getItem("inputTime1") !== "") {
-  const time1 = localStorage.getItem("time1");
+if (sessionStorage.getItem("inputTime1") !== "") {
+  time1 = sessionStorage.getItem("time1");
   inputTime1.value = time1;
 }
 
 // Restores second time input form
-if (localStorage.getItem("inputTime2") !== "") {
-  const time2 = localStorage.getItem("time2");
+if (sessionStorage.getItem("inputTime2") !== "") {
+  time2 = sessionStorage.getItem("time2");
   inputTime2.value = time2;
 }
 
@@ -99,31 +113,13 @@ for (let i = 0; i < muscleGroups.length; i ++) {
   });
 }
 
-// Saves data from forms in localStorage for the purpose of (1) refilling forms with previous data on refresh and (2) creating session object
+// Saves data from forms in sessionStorage for the purpose of (1) refilling forms with previous data on refresh and (2) instantiating Session
 // Called when any button is clicked
 function storeData() {
-  // Storing data for restoring forms
-  const selectedGoalIndex = selectGoal.selectedIndex;
-  const selectedMusclesIndices = [];
-  const time1 = inputTime1.value;
-  const time2 = inputTime2.value;
-
-  for (let i = 0; i < selectMuscles.length; i ++) {
-    if (selectMuscles[i].selected) {
-      selectedMusclesIndices.push(i)
-    }
-  }
-
-  localStorage.setItem("selectedGoalIndex", selectedGoalIndex);
-  localStorage.setItem("selectedMusclesIndices", selectedMusclesIndices.join(" "));
-  localStorage.setItem("time1", time1);
-  localStorage.setItem("time2", time2);
-
-  // Storing data for instantiating Session
-  const selectedGoal = selectGoal.options[selectGoal.selectedIndex].value;
-  const selectedMuscles = [];
-  const minTime = Math.min(time1, time2);
-  const maxTime = Math.max(time1, time2);
+  selectedGoal = selectGoal.options[selectGoal.selectedIndex].value;
+  selectedMuscles = [];
+  time1 = inputTime1.value;
+  time2 = inputTime2.value;
 
   for (let i = 0; i < selectMuscles.length; i ++) {
     if (selectMuscles[i].selected) {
@@ -131,10 +127,10 @@ function storeData() {
     }
   }
 
-  localStorage.setItem("selectedGoal", selectedGoal);
-  localStorage.setItem("selectedMuscles", selectedMuscles);
-  localStorage.setItem("minTime", minTime);
-  localStorage.setItem("maxTime", maxTime);
+  sessionStorage.setItem("selectedGoal", selectedGoal);
+  sessionStorage.setItem("selectedMuscles", selectedMuscles);
+  sessionStorage.setItem("time1", time1);
+  sessionStorage.setItem("time2", time2);
 }
 
 // Checks is time inputs are numbers and clears forms if not
@@ -165,10 +161,10 @@ document.getElementById("btn-to-workouts-list").addEventListener("click", functi
 });
 
 // Generate session button
-// Removing localStorage to make sure a new Session is instantiated if one already exists
+// Removing sessionStorage to make sure a new Session is instantiated if one already exists
 // ***FYI URL redirects are handled server-side in server.js***
 document.getElementById("btn-generate").addEventListener("click", function() {
   inputNaN();
   storeData();
-  localStorage.removeItem("sessionWorkoutsCount");
+  sessionStorage.removeItem("sessionWorkoutsCount");
 });

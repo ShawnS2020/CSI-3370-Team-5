@@ -18,8 +18,8 @@
       <% for (let i = 0; i < workoutsList.length; i++) { %>
         <div class="div-workout">
           <h1><%= workoutsList[i].getName() %></h1>
-          <p><%= workoutsList[i].getDescription() %></p>
-          <p><%= workoutsList[i].getMuscles().join(", ") %></p>
+          <p><span style="font-weight: bold;">Description</span><br><%= workoutsList[i].getDescription() %></p>
+          <p><span style="font-weight: bold;">Muscles worked</span><br><%= workoutsList[i].getMuscles().join(", ") %></p>
         </div>
       <% } %>
     </main>

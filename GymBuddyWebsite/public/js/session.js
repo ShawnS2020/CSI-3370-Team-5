@@ -1,13 +1,13 @@
 import {Session} from "./sessionclass.js";
 
-// Getting form data from localStorage
-const selectedGoal = localStorage.getItem("selectedGoal");
-const selectedMuscles = localStorage.getItem("selectedMuscles");
-const minTime = localStorage.getItem("minTime");
-const maxTime = localStorage.getItem("maxTime");
+// Getting form data from sessionStorage
+const selectedGoal = sessionStorage.getItem("selectedGoal");
+const selectedMuscles = sessionStorage.getItem("selectedMuscles");
+const minTime = Math.min(sessionStorage.getItem("time1"), sessionStorage.getItem("time2"));
+const maxTime = Math.max(sessionStorage.getItem("time1"), sessionStorage.getItem("time2"));
 
 // Declaring variables that will be used to populate html elements
-// Will be assigned to data from localStorage if a session already exists or new data if not
+// Will be assigned to data from sessionStorage if a session already exists or new data if not
 let sessionWorkoutsCount;
 let sessionWorkoutsNames;
 let sessionWorkoutsSetCounts;
@@ -22,17 +22,14 @@ const session = new Session(selectedGoal, selectedMuscles.split(","), minTime, m
 // Checks if a session already exists
 // Assigns variables to data from previous session if one exists
 // Creates new session if not
-if (localStorage.getItem("sessionWorkoutsCount") !== null) {
-  sessionWorkoutsCount = localStorage.getItem("sessionWorkoutsCount");
-  sessionWorkoutsNames = localStorage.getItem("sessionWorkoutsNames").split(",");
-  sessionWorkoutsSetCounts = localStorage.getItem("sessionWorkoutsSetCounts").split(",");
-  sessionRepRange = localStorage.getItem("sessionRepRange");
-
-  console.log("Restored an old session.");
+if (sessionStorage.getItem("sessionWorkoutsCount") !== null) {
+  sessionWorkoutsCount = sessionStorage.getItem("sessionWorkoutsCount");
+  sessionWorkoutsNames = sessionStorage.getItem("sessionWorkoutsNames").split(",");
+  sessionWorkoutsSetCounts = sessionStorage.getItem("sessionWorkoutsSetCounts").split(",");
+  sessionRepRange = sessionStorage.getItem("sessionRepRange");
 }
 else {
   session.randomizeSession(session.getGoal(), session.getMuscles(), session.getMinTime(), session.getMaxTime());
-  console.log("Randomized a new session.");
 
   // Assigning variables using new Session object
   sessionWorkoutsCount = session.getWorkoutsCount();
@@ -46,11 +43,11 @@ else {
     sessionWorkoutsSetCounts.push(session.getSessionWorkouts()[i].getSetCount());
   }
 
-  // Storing data in localStorage in case user quits session and wants to restore it
-  localStorage.setItem("sessionWorkoutsCount", sessionWorkoutsCount);
-  localStorage.setItem("sessionWorkoutsNames", sessionWorkoutsNames);
-  localStorage.setItem("sessionWorkoutsSetCounts", sessionWorkoutsSetCounts);
-  localStorage.setItem("sessionRepRange", sessionRepRange);
+  // Storing data in sessionStorage in case user quits session and wants to restore it
+  sessionStorage.setItem("sessionWorkoutsCount", sessionWorkoutsCount);
+  sessionStorage.setItem("sessionWorkoutsNames", sessionWorkoutsNames);
+  sessionStorage.setItem("sessionWorkoutsSetCounts", sessionWorkoutsSetCounts);
+  sessionStorage.setItem("sessionRepRange", sessionRepRange);
 }
 // End of "if-else" statement
 
