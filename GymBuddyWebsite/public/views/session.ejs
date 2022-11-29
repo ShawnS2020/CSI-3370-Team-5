@@ -3,20 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Session</title>
+    <link rel="stylesheet" href="css/workoutsliststyles.css">
   </head>
   <body>
     <header>
-      <form class="" action="/session" method="post">
-        <button id="btn-quit" type="submit" name="button">Quit</button>
-      </form>
+      <div class="div-form">
+        <form class="" action="/session" method="post">
+          <button id="btn-quit" type="submit" name="button">Quit</button>
+        </form>
+      </div>
+
+      <div class="div-h1">
+        <h1 class="h1-header" >Your workouts</h1>
+      </div>
     </header>
-    <h1>Your workouts</h1>
-    <div class="">
-      <h2 id="h2-workouts">
-        
-      </h2>
+  <main>
+    <div id="div-session-workouts">
 
     </div>
+  </main>
     <script type="module" src="../js/session.js"></script>
   </body>
 </html>

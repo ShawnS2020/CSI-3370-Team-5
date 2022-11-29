@@ -1,0 +1,77 @@
+body {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  height: 80px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+}
+
+button {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #000;
+  background-color: #FFF;
+  font-size: 15px;
+  margin-left: 15px;
+  border-radius: 20px;
+  width: 60px;
+  height: 30px;
+}
+
+button:hover{
+  background-color: GRAY;
+  color: #000;
+}
+
+main {
+  background-color: #FFF;
+  padding: 10px;
+}
+
+.div-form {
+  display: inline-block;
+  margin: 0;
+  width: 150px;
+}
+
+.div-h1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.h1-header {
+  vertical-align: middle;
+  font-size: 1.5rem;
+  font-style: italic;
+  display: inline-block;
+  color: #FFF;
+}
+
+.div-workout {
+  width: 320px;
+  height: 225px;
+  margin: 20px;
+  background-color: LIGHTBLUE;
+  border-radius: 40px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: BLACK;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.div-workout h2 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.div-workout p {
+  padding-left: 5px;
+}
+
+.h2-workouts {
+  margin: 0;
+}

@@ -1,73 +1,94 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Gym Buddy</title>
-    <link rel="stylesheet" href="../css/mainstyles.css">
-  </head>
-  <body>
-    <header>
-      <h1>Gym Buddy</h1>
-    </header>
-    <main id="">
+<head>
+  <meta charset="utf-8">
+  <title>Gym Buddy</title>
+  <link rel="stylesheet" href="../css/mainstyles.css">
+</head>
 
-      <form id="form"  class="form-generate" action="/" method="post">
-        <div>
+<body>
+  <nav>
+    <div class="logo">Gym Buddy</div>
+    <div class="nav-items">
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-container">
+      <div class="column-left">
+        <main id="">
+          <p1>
+            For the Gym Buddy to work properly it is going to ask a couple questions and use your answers to generate
+            a personalized program for you! <br>
+          </p1>
 
-          <label for="select-goal">What is your goal today?</label>
-          <select class="" id="select-goal" name="goal" required>
-            <option value="Strength">Strength</option>
-            <option value="Hypertrophy">Hypertrophy</option>
-            <option value="Endurance">Endurance</option>
-          </select>
+          <form id="form" class="form-generate" action="/" method="post">
+            <div id="div-buttons" class="">
+              <button id="btn-to-workouts-list" type="submit" name="btn" value="workoutsList">Workouts list</button>
+              <button id="btn-generate" type="submit" name="btn" value="generate">Generate</button>
+            </div>
+            <div>
+              <p4>
+                <label class="label-1-2 label-time" for="input-time"><br>What is the range of time that you are looking to spend today?</label>
+                <input class="input-time" id="input-time-1" type="text" name="time1" value="" required
+                  autocomplete="off">
+                <span>Minimum (Minutes)</span>
+                <input class="input-time" id="input-time-2" type="text" name="time2" value="" required
+                  autocomplete="off">
+                <span>Maximum (Minutes)<br></span>
+              </p4>
+              <p2>
+                <label for="select-goal"><br>What are you looking for out of your workout today?  </label>
+                <select class="" id="select-goal" name="goal" required>
+                  <option value="Strength">Strength</option>
+                  <option value="Hypertrophy">Hypertrophy</option>
+                  <option value="Endurance">Endurance</option>
+                </select>
+              </p2>
+              <p3>
+                <label class="label-1-2 label-muscle" for="select-muscles"><br>What muscle groups are you looking to target in your workout? <br></label>
+                <select class="" id="select-muscles" name="muscles" multiple required>
 
-          <label class="label-1-2 label-muscle" for="select-muscles">"What muscle groups would you like to workout?"</label>
-          <select class="" id="select-muscles" name="muscles" multiple required>
+                  <optgroup class="group" id="group-arms" label="Arms">
+                    <option value="biceps">Biceps</option>
+                    <option value="triceps">Triceps</option>
+                  </optgroup>
 
-            <optgroup class="group" id="group-arms" label="Muscles">
-              <option value="biceps">Biceps</option>
-              <option value="triceps">Triceps</option>
-            </optgroup>
+                  <optgroup class="group" id="group-back" label="Back">
+                    <option value="lower back">Lower back</option>
+                    <option value="upper back">Upper back</option>
+                  </optgroup>
 
-            <optgroup class="group" id="group-back" label="Back">
-              <option value="lower back">Lower back</option>
-              <option value="upper back">Upper back</option>
-            </optgroup>
+                  <option style="font-weight: bold;" value="chest">Chest</option>
+                  <option style="font-weight: bold;" value="core">Core</option>
 
-            <option style="font-weight: bold;" value="chest">Chest</option>
-            <option style="font-weight: bold;" value="core">Core</option>
+                  <optgroup class="group" id="group-legs" label="Legs">
+                    <option value="calves">Calves</option>
+                    <option value="glutes">Glutes</option>
+                    <option value="hamstrings">Hamstrings</option>
+                    <option value="quads">Quads</option>
+                  </optgroup>
 
-            <optgroup class="group" id="group-legs" label="Legs">
-              <option value="calves">Calves</option>
-              <option value="glutes">Glutes</option>
-              <option value="hamstrings">Hamstrings</option>
-              <option value="quads">Quads</option>
-            </optgroup>
+                  <optgroup class="group" id="group-shoulders" label="Shoulders">
+                    <option value="front delts">Front delts</option>
+                    <option value="rear delts">Rear delts</option>
+                    <option value="upper delts">Upper delts</option>
+                  </optgroup>
 
-            <optgroup class="group" id="group-shoulders" label="Shoulders">
-              <option value="front delts">Front delts</option>
-              <option value="rear delts">Rear delts</option>
-              <option value="upper delts">Upper delts</option>
-            </optgroup>
+                </select>
+              </p3>
 
-          </select>
+            </div>
 
-          <label class="label-1-2 label-time" for="input-time">Select a time range for your workout.</label>
-          <input class="input-time" id="input-time-1" type="text" name="time1" value="" required autocomplete="off">
-          <span>mins</span>
-          <input class="input-time" id="input-time-2" type="text" name="time2" value="" required autocomplete="off">
-          <span>mins</span>
+            <br>
 
-        </div>
+          </form>
+        </main>
 
-        <br>
-        <!-- </form> -->
-        <button id="btn-to-workouts-list" type="submit" name="btn" value="workoutsList">Workouts list</button>
-        <!-- <form class="form-generate" action="/" method="post"> -->
-        <!-- </form> -->
-        <button id="btn-generate" type="submit" name="btn" value="generate">Generate</button>
-      </form>
-    </main>
-    <script type="module" type="text/javascript" src="../js/index.js"></script>
-  </body>
+      </div>
+      <div class="column-right">
+        <img src="../images/gym.png" alt="illustration" class="hero-image" width="200px" height="200px">
+      </div>
+    </div>
+  </section>
+  <script type="module" type="text/javascript" src="../js/index.js"></script>
+</body>
+
 </html>
