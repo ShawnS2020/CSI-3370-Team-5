@@ -3,26 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Workouts List</title>
-    <link rel="stylesheet" href="css/workoutsliststyles.css">
+    <link rel="stylesheet" href="css/list-sessionstyles.css">
   </head>
   <body>
     <header>
+      <div class="div-form">
+        <form action="/workoutslist" method="post">
+          <button type="submit" name="button">Back</button>
+        </form>
+      </div>
 
-      <form class="" action="/workoutslist" method="post">
-        <button id="btn-back" type="submit" name="button">Back</button>
-      </form>
+      <div class="div-h1">
+        <h1 class="h1-header" >Workouts List</h1>
+      </div>
 
-      <h1>Workouts List</h1>
     </header>
     <main id="main">
       <% for (let i = 0; i < workoutsList.length; i++) { %>
         <div class="div-workout">
-          <h1><%= workoutsList[i].getName() %></h1>
+          <h2><%= workoutsList[i].getName() %></h1>
           <p><span style="font-weight: bold;">Description</span><br><%= workoutsList[i].getDescription() %></p>
           <p><span style="font-weight: bold;">Muscles worked</span><br><%= workoutsList[i].getMuscles().join(", ") %></p>
         </div>
       <% } %>
     </main>
-    <!-- <script type="module" type="text/javascript" src="../js/workoutslist.js"></script> -->
   </body>
 </html>

@@ -6,7 +6,7 @@ if (sessionStorage.getItem("sessionWorkoutsNames") !== null) {
   btnReturn.setAttribute("id", "btn-return");
   btnReturn.setAttribute("type", "submit");
 
-  document.getElementById("form").append(btnReturn);
+  document.getElementById("div-buttons").append(btnReturn);
 
   document.getElementById("btn-return").addEventListener("click", function() {
     inputNaN();
@@ -76,16 +76,16 @@ if (sessionStorage.getItem("inputTime2") !== "") {
 
 
 // Functions that expand/retract muscles form
-selectMuscles.addEventListener("mouseover", function() {
-  selectMuscles.style.height = "300px";
-  selectMuscles.style.marginBottom = "-300px";
-  groupArms.label = "Arms";
-});
-
-selectMuscles.addEventListener("mouseout", function() {
-  selectMuscles.style.height = "18.8px";
-  groupArms.label = "Muscles";
-});
+// selectMuscles.addEventListener("mouseover", function() {
+//   selectMuscles.style.height = "300px";
+//   selectMuscles.style.marginBottom = "-300px";
+//   groupArms.label = "Arms";
+// });
+//
+// selectMuscles.addEventListener("mouseout", function() {
+//   selectMuscles.style.height = "18.8px";
+//   groupArms.label = "Muscles";
+// });
 
 // Used in the following event listener to check if all options of a group are selected
 const allEqual = arr => arr.every(val => val === arr[0]);

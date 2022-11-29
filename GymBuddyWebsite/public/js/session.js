@@ -52,12 +52,18 @@ else {
 // End of "if-else" statement
 
 // Creating html and populating with data
+const div = document.getElementById("div-session-workouts");
+
 for (let i = 0; i < sessionWorkoutsCount; i ++) {
-  document.getElementById("h2-workouts").append(sessionWorkoutsNames[i],
-    document.createElement("br"),
-    sessionWorkoutsSetCounts[i], " sets",
-    document.createElement("br"),
-    sessionRepRange,
-    document.createElement("br"),
-    document.createElement("br"));
+  const workoutName = document.createElement("h1");
+  const workoutSets = document.createElement("h2");
+  const workoutReps = document.createElement("h2");
+  const br = document.createElement("br");
+
+  workoutName.innerHTML = sessionWorkoutsNames[i];
+  workoutSets.innerHTML = sessionWorkoutsSetCounts[i] + " sets";
+  workoutReps.innerHTML = sessionRepRange;
+
+  div.append(workoutName, workoutSets, workoutReps, br);
 }
+Array.from(div.children).forEach(element => element.classList.add("h2-workouts"));
