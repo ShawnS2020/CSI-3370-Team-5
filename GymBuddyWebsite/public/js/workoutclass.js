@@ -4,11 +4,13 @@ class Workout {
   #description;
   #muscles = [];
   #setCount;
+  static workoutsList = [];
 
   constructor(name, description, muscles) {
     this.#name = name;
     this.#description = description;
     this.#muscles = muscles;
+    Workout.workoutsList.push(this);
   }
 
   getSetCount() {

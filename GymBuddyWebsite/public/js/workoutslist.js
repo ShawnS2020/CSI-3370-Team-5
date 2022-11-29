@@ -30,7 +30,7 @@ const workout26 = new Workout("Dumbbell upright rows", "Lift the bumbbells to yo
 const workout27 = new Workout("Lateral raises", "Lift the bumbbells laterally", ["Upper delts"]);
 const workout28 = new Workout("Bent-over row", "Lift the bumbbells laterally", ["Upper back", "lower back", "biceps", "rear delts", "core"]);
 
-// Array of all workout objects
-const workoutsList = [workout1, workout2, workout3, workout4, workout5, workout6, workout7, workout8, workout9, workout10, workout11, workout12, workout13, workout14, workout15, workout16, workout17, workout18, workout19, workout20, workout21, workout22, workout23, workout24, workout25, workout26, workout27, workout28];
+// Array list of all workout objects
+const workoutsList = Workout.workoutsList;
 
 export {workoutsList};
