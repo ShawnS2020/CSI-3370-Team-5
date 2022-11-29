@@ -31,6 +31,6 @@ const workout27 = new Workout("Lateral raises", "Lift the bumbbells laterally", 
 const workout28 = new Workout("Bent-over row", "Lift the bumbbells laterally", ["Upper back", "lower back", "biceps", "rear delts", "core"]);
 
 // Array list of all workout objects
-const workoutsList = Workout.workoutsList;
+const workoutsList = Workout.getWorkoutsList();
 
 export {workoutsList};
